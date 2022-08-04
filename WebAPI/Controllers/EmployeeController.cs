@@ -52,7 +52,6 @@ namespace WebAPI.Controllers
         [HttpPost]
         public async Task<ActionResult<bool>> AddAsync(EmployeeDTO empDTO)
         {
-           //var aaa = !_employeeService.FindByIdAsync.Any(e => e.Id == employee.Id);
             var IdExist = _context.Employees.Any(x => x.Id == empDTO.Id);
 
             if (ModelState.IsValid && empDTO.DateOfBirth < DateTime.Now)
