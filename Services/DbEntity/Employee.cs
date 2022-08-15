@@ -26,7 +26,7 @@ namespace Sample.Models
 
         [Required]
         [DataType(DataType.Date)]
-        public DateTime DateOfBirth { get; set; }
+        public DateTime? DateOfBirth { get; set; }
 
 
         public Guid? CreatedBy { get; set; }

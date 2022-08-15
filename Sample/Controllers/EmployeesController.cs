@@ -35,18 +35,7 @@ namespace Sample.Controllers
         // GET: Employees/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            //if (id == null || _context.Employees == null)
-            //{
-            //    return NotFound();
-            //}
             var data = await _service.DetailsAsync(id).ConfigureAwait(false);
-            //var employee = await _context.Employees
-            //    .FirstOrDefaultAsync(m => m.Id == id);
-            //if (employee == null)
-            //{
-            //    return NotFound();
-            //}
-
             return View(data);
         }
 

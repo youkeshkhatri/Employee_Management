@@ -17,9 +17,9 @@ namespace Sample.Services
 
         Task<List<SpGetAll>> GetAllAsync();
 
-        //for sample index
-        Task<List<Employee>> GetAllEmpAsync();
-        Task<Employee> EmpDetailsAsync(int? id);
+        ////for sample index
+        //Task<List<Employee>> GetAllEmpAsync();
+        //Task<Employee> EmpDetailsAsync(int? id);
 
     }
 }

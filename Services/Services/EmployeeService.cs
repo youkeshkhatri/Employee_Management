@@ -1,6 +1,4 @@
 ﻿using Sample.Models;
-//using Microsoft.AspNetCore.Mvc;
-//using Microsoft.EntityFrameworkCore;
 using Sample.Repository;
 using Services.DbEntity;
 using Services.UOW;
@@ -41,7 +39,8 @@ namespace Sample.Services
             //var resp = await _employeeRepository.GetAllAsync().ConfigureAwait(false);
             //return resp.ToList();
             //return await _context.Employees.ToListAsync().ConfigureAwait(false);
-            return await _employeeRepository.GetAllEmployeeFromProcAsync(-1).ConfigureAwait(false);
+            var res= await _employeeRepository.GetAllEmployeeFromProcAsync(-1).ConfigureAwait(false);
+            return res;
         }
 
         public async Task<bool> CreateAsync(Employee employee)
@@ -79,18 +78,18 @@ namespace Sample.Services
             return true;
         }
 
-        //for sample/index
-        public async Task<List<Employee>> GetAllEmpAsync()
-        {
-            var resp = await _employeeRepository.GetAllFromProcAsync(-1).ConfigureAwait(false);
-            return resp.ToList();
-        }
+        ////for sample/index
+        //public async Task<List<Employee>> GetAllEmpAsync()
+        //{
+        //    var resp = await _employeeRepository.GetAllFromProcAsync(-1).ConfigureAwait(false);
+        //    return resp.ToList();
+        //}
 
-        public async Task<Employee> EmpDetailsAsync(int? id)
-        {
-            var resp = await _employeeRepository.GetAllFromProcAsync(id.Value).ConfigureAwait(false);
-            return resp.First();
-        }
+        //public async Task<Employee> EmpDetailsAsync(int? id)
+        //{
+        //    var resp = await _employeeRepository.GetAllFromProcAsync(id.Value).ConfigureAwait(false);
+        //    return resp.First();
+        //}
 
     }
 }

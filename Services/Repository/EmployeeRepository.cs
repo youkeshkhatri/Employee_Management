@@ -14,10 +14,11 @@ namespace Sample.Repository
         //retriving from Procdure model
         public async Task<List<SpGetAll>> GetAllEmployeeFromProcAsync(int id)
         {
-            return await _context.SpGetAlls
+            var res = await _context.SpGetAlls
             .FromSqlRaw(String.Format("EXECUTE sp_GetAllEmployee {0}", id))
-          //.FromSqlInterpolated($"EXECUTE sp_GetAllEmployee {id}")
+            //.FromSqlInterpolated($"EXECUTE sp_GetAllEmployee {id}")
             .ToListAsync().ConfigureAwait(false);
+            return res;
         }
 
 
