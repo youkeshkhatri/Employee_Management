@@ -29,16 +29,11 @@ namespace Sample.Services
         {
             var resp = await _employeeRepository.GetAllEmployeeFromProcAsync(id.Value).ConfigureAwait(false);
             return resp.First();
-            //var employee = await _context.Employees.FirstOrDefaultAsync(m => m.Id == id);
-            //return true;
         }
 
         public async Task<List<SpGetAll>> GetAllAsync()
         {
             //var resp = await _employeeRepository.FromSqlRaw("exec sp_GetAllEmployee");
-            //var resp = await _employeeRepository.GetAllAsync().ConfigureAwait(false);
-            //return resp.ToList();
-            //return await _context.Employees.ToListAsync().ConfigureAwait(false);
             var res= await _employeeRepository.GetAllEmployeeFromProcAsync(-1).ConfigureAwait(false);
             return res;
         }
@@ -50,8 +45,6 @@ namespace Sample.Services
             employee.CreatedOn = DateTime.Now;
             await _employeeRepository.AddAsync(employee).ConfigureAwait(false);
             _uow.CommitChanges();
-            //_context.Add(employee);
-            //await _context.SaveChangesAsync();
             return true;
         }
 
@@ -61,8 +54,6 @@ namespace Sample.Services
             employee.ModifiedOn = DateTime.Now;
             _employeeRepository.Update(employee);
             _uow.CommitChanges();
-            //_context.Update(employee);
-            //await _context.SaveChangesAsync();
             return Task.FromResult(true);
         }
 
@@ -77,19 +68,6 @@ namespace Sample.Services
             _uow.CommitChanges();
             return true;
         }
-
-        ////for sample/index
-        //public async Task<List<Employee>> GetAllEmpAsync()
-        //{
-        //    var resp = await _employeeRepository.GetAllFromProcAsync(-1).ConfigureAwait(false);
-        //    return resp.ToList();
-        //}
-
-        //public async Task<Employee> EmpDetailsAsync(int? id)
-        //{
-        //    var resp = await _employeeRepository.GetAllFromProcAsync(id.Value).ConfigureAwait(false);
-        //    return resp.First();
-        //}
 
     }
 }

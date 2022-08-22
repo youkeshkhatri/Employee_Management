@@ -7,6 +7,7 @@ namespace Sample.Repository
     public class GenericRepository<T> : IGenericRepository<T> where T : class
     {
         protected readonly TaskContext _context;
+
         public GenericRepository(TaskContext context)
         {
             _context = context;
@@ -32,25 +33,5 @@ namespace Sample.Repository
             _context.Set<T>().Update(entity);
             //_context.Entry(entity).State = EntityState.Modified;
         }
-
-        //public void Add(T entity)
-        //{
-        //    _context.Set<T>().Add(entity);
-        //}
-
-        //public void AddRange(IEnumerable<T> entities)
-        //{
-        //    _context.Set<T>().AddRange(entities);
-        //}
-
-        //public IEnumerable<T> Find(Expression<Func<T, bool>> expression)
-        //{
-        //    return _context.Set<T>().Where(expression);
-        //}
-
-        //public void RemoveRange(IEnumerable<T> entities)
-        //{
-        //    _context.Set<T>().RemoveRange(entities);
-        //}
     }
 }

@@ -11,25 +11,17 @@ namespace Sample.Repository
 
         }
 
-        //retriving from Procdure model
         public async Task<List<SpGetAll>> GetAllEmployeeFromProcAsync(int id)
         {
             var res = await _context.SpGetAlls
-            .FromSqlRaw(String.Format("EXECUTE sp_GetAllEmployee {0}", id))
-            //.FromSqlInterpolated($"EXECUTE sp_GetAllEmployee {id}")
+            .FromSqlRaw(String.Format($"EXECUTE sp_GetAllEmployee {id}"))
+            //.FromSqlRaw("EXECUTE sp_GetAllEmployee {0}", id)
+           // .FromSqlInterpolated($"EXECUTE sp_GetAllEmployee {id}")
             .ToListAsync().ConfigureAwait(false);
+
             return res;
         }
 
-
-
-        //retriving from employee model
-        public async Task<List<Employee>> GetAllFromProcAsync(int id)
-        {
-            return await _context.Employees
-            .FromSqlRaw(String.Format("EXECUTE sp_GetAllEmployee {0}", id))
-            .ToListAsync().ConfigureAwait(false);
-        }
     }
 
 

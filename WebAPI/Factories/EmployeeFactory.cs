@@ -15,7 +15,24 @@ namespace WebAPI.Factories
 
         public EmployeeDTO MapEmployeeEntityToDTO(Employee entity)
         {
-            return _mapper.Map<EmployeeDTO>(entity);
+            return _mapper.Map<EmployeeDTO>(entity); //using automapper
+        }
+
+        public List<EmployeeDTO> MapEntitytoDTO(List<Employee>? emp)
+        {
+            if (emp == null)
+                return new List<EmployeeDTO>();
+
+
+            var studentDtos = emp.Select(x => new EmployeeDTO  
+            {
+                Name = x.Name,
+                Position = x.Position,
+                Address = x.Address
+
+            }).ToList();
+            return studentDtos;
+
         }
 
 

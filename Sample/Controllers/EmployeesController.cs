@@ -40,8 +40,6 @@ namespace Sample.Controllers
         }
 
 
-
-
         // GET: Employees/Create
         public IActionResult Create()
         {
@@ -71,9 +69,7 @@ namespace Sample.Controllers
                 }
                 else
                 {
-                    await _service.CreateAsync(employee);
-                    //  _context.Add(employee);
-                    //    await _context.SaveChangesAsync();
+                    await _service.CreateAsync(employee);;
                     return RedirectToAction(nameof(Index));
                 }                
             }
@@ -102,11 +98,10 @@ namespace Sample.Controllers
         // POST: Employees/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Position,Address,Email,DateOfBirth")] Employee employee)
+        public async Task<IActionResult> Edit(Employee employee)
         {
             if (ModelState.IsValid && employee.DateOfBirth < DateTime.Now)
             {
-                //var IdExist = _context.Employees.Where(e => e.Id == employee.Id);
                 var EmailExist = _context.Employees.Any(e => e.Email == employee.Email);
                 if (EmailExist)
                 {
@@ -129,50 +124,14 @@ namespace Sample.Controllers
         }
 
 
-
-        // GET: Employees/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var employee = await _service.FindByIdAsync(id.Value).ConfigureAwait(false);
-            if (employee == null)
-            {
-                return NotFound();
-            }
-
-            return View(employee);
-        }
-
-
         // POST: Employees/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            //if (_context.Employees == null)
-            //{
-            //    return Problem("Entity set 'TaskContext.Employees'  is null.");
-            //}
-
             await _service.DeleteAsync(id).ConfigureAwait(false);
-            //var employee = await _service.FindByIdAsync(id).ConfigureAwait(false);
-            //if (employee != null)
-            //{
-            //    _context.Employees.Remove(employee);
-            //}
-
-            //await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-
-        //private bool EmployeeExists(int id)
-        //{
-        //    return (_context.Employees?.Any(e => e.Id == id)).GetValueOrDefault();
-        //}
 
     }
 }
